@@ -1,0 +1,42 @@
+{
+    "manifest_version": 3,
+    "name": "ZeroPhish",
+    "version": "1.0.0",
+    "description": "A Chrome extension to detect phishing emails and links.",
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "icon.png"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": [
+          "https://mail.google.com/*",
+          "https://outlook.live.com/*"
+        ],
+        "js": ["content.js"],
+        "run_at": "document_idle"
+      }
+    ],
+    "permissions": [
+      "activeTab",
+      "scripting",
+      "tabs",
+      "storage",
+      "identity"
+    ],
+    "host_permissions": [
+      "http://localhost:5000/*",
+      "https://www.googleapis.com/*",
+      "https://mail.google.com/*"
+    ],
+    "oauth2": {
+      "client_id": "523937281058-86iiiq9l7q10fmjoo9io0li0j5j0isob.apps.googleusercontent.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/gmail.readonly"
+      ]
+    }
+  }
+  
